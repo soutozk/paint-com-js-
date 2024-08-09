@@ -7,10 +7,26 @@ const sizeButtons = document.querySelector(".button--size");
 const ButtonClear = document.querySelector(".button--clear");
 
 let brushSize = 80;
-ctx.fillStyle = "#000";
-canvas.addEventListener("mousedown", () => {
-  const { clientX, clientY } = event;
+
+let isPainting = false;
+
+inputColor.addEventListener("change", ({ target }) => {
+  ctx.fillStyle = target.value;
+});
+//torna o ispainting true ao clicar no botao direito
+canvas.addEventListener("mousedown", ({ clientX, clientY }) => {
   draw(clientX, clientY);
+  isPainting = true;
+});
+//torna
+canvas.addEventListener("mousemove", ({ clientX, clientY }) => {
+  if (isPainting) {
+    draw(clientX, clientY);
+  }
+});
+
+canvas.addEventListener("mouseup", ({ clientX, clientY }) => {
+  isPainting = false;
 });
 
 const draw = (x, y) => {
@@ -18,7 +34,7 @@ const draw = (x, y) => {
   ctx.arc(
     x - canvas.offsetLeft,
     y - canvas.offsetTop,
-    brushSize,
+    brushSize / 2,
     0,
     2 * Math.PI
   );
