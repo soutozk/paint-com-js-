@@ -4,19 +4,29 @@
   box-sizing: border-box;
 }
 
+#canvas {
+  cursor: ; /* Esconde o cursor padrão */
+}
+#pincelCursor {
+  position: absolute;
+  display: none;
+  pointer-events: none;
+  z-index: 1000;
+}
+
 body {
   background-color: #d8d8e1;
 }
 
 canvas {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   border-radius: 8px;
   box-shadow: 0 0 5px;
 }
 
 .container {
   width: 100%;
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
 
   align-items: center;
@@ -37,7 +47,7 @@ canvas {
 }
 
 .button--tool {
-  height: 45px;
+  height: 30px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -71,7 +81,9 @@ canvas {
 .input--color::-webkit-color-swatch {
   border-radius: 100px;
 }
-
+button img {
+  width: 50px;
+}
 .button--size {
   padding: 10px;
   height: auto;
@@ -106,4 +118,8 @@ canvas {
 
 .active {
   background-color: #f2f2f2;
+}
+
+#canvas {
+  z-index: 5;
 }
